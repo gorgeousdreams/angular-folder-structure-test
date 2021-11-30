@@ -1,0 +1,105 @@
+.current-node {
+  position: relative;
+  border: 1px solid transparent;
+  padding: 4px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+
+  .node-name {
+    padding-left: 4px;
+  }
+
+  &::before {
+    content: " ";
+    width: 10px;
+    height: 1px;
+    display: inline-block;
+    position: absolute;
+    left: -12px;
+    top: 14px;
+    background-color: black;
+  }
+
+  &.--root {
+    &::before {
+      display: none;
+    }
+  }
+
+  .current-node-actions {
+    display: none;
+    margin-left: 4px;
+
+    &-add {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+
+    &-remove {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      margin-left: 4px;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    border: 1px solid black;
+
+    .current-node-actions {
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+  .new-node-actions {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+
+    &-file, &-folder {
+      background-color: rgb(211, 211, 211);
+      font-size: 12px;
+      height: 18px;
+      border: 1px solid gray;
+      color: black;
+      padding: 0 8px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    &-folder {
+      border-left: 0px solid transparent;
+    }
+  }
+}
+
+.child-nodes {
+  position: relative;
+  padding-left: 20px;
+
+  &::before {
+    content: " ";
+    width: 1px;
+    bottom: 14px;
+    display: inline-block;
+    position: absolute;
+    left: 9px;
+    top: 0;
+    background-color: black;
+  }
+}

@@ -1,0 +1,28 @@
+<div class="current-node" [ngClass]="{'--root': depth === 1}">
+  <img [src]="data.type === 'folder' ? '../../assets/images/folder-open-regular.svg' : '../../assets/images/file-regular.svg'" alter="file image" width="14px">
+  <span class="node-name">{{ data.name }}</span>
+  <div class="current-node-actions">
+    <div *ngIf="data.type === 'folder'" class="current-node-actions-add" (click)="isAddingNewNode = true">+</div>
+    <div class="current-node-actions-remove" (click)="removeNode()">X</div>
+  </div>
+</div>
+<div class="child-nodes">
+  <div *ngFor="let child of data.children">
+    <app-node [data]="child" [depth]="depth + 1"></app-node>
+  </div>
+
+  <div *ngIf="isAddingNewNode" class="current-node">
+    <div *ngIf="!newNodeType" class="new-node-actions">
+      <div class="new-node-actions-file" (click)="newNodeType = 'file'">File</div>
+      <div class="new-node-actions-folder" (click)="newNodeType = 'folder'">Folder</div>
+    </div>
+    <ng-container *ngIf="newNodeType">
+      <img [src]="newNodeType === 'folder' ? '../../assets/images/folder-open-regular.svg' : '../../assets/images/file-regular.svg'" alter="file image" width="14px">
+      <input type="text" [(ngModel)]="newNodeName" />
+      <div class="current-node-actions">
+        <div class="current-node-actions-add" (click)="addNewNode()">+</div>
+        <div class="current-node-actions-remove" (click)="cancelNewNode()">X</div>
+      </div>
+    </ng-container>
+  </div>
+</div>
